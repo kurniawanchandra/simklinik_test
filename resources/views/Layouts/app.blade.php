@@ -110,7 +110,7 @@
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> 
 
             <li>  
               <form id="logout-form" action="{{ route('logout') }}" method="POST" >  
