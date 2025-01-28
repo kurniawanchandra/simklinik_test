@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+  <title>Sistem Informasi Rumah Sakit Imanuel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -83,7 +83,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('profil') }}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -115,10 +115,10 @@
             <li>  
               <form id="logout-form" action="{{ route('logout') }}" method="POST" >  
                   @csrf  
-                  <a class="dropdown-item d-flex align-items-center" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  
-                      <i class="bi bi-box-arrow-right"></i>  
-                      <span>Log Out</span>  
-                  </a>  
+                  <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Log Out</span>
+                </a> 
             </form> 
           </li>  
 
@@ -357,7 +357,7 @@
       </li><!-- End Error 404 Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="pages-blank.html">
+        <a class="nav-link collapsed" href="pages-blank.html">
           <i class="bi bi-file-earmark"></i>
           <span>Blank</span>
         </a>
@@ -403,6 +403,27 @@
   <!-- Template Main JS File -->
   
   <script src="{{ asset('NiceAdmin/assets/js/main.js') }}"></script>
+
+  <div class="modal fade" id="logoutModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Logout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to log out?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Log Out</button>
+                </form>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Basic Modal-->
 
 </body>
 

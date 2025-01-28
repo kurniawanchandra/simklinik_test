@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Fitur\ProfilController;
 use App\Http\Controllers\Role\AdminController;
 use App\Http\Controllers\Role\DokterController;
 use App\Http\Controllers\Role\PasienController;
@@ -40,12 +41,14 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     //Route::get('/guru/dashboard', [HomeController::class, 'guruView'])->middleware('role:guru')->name('guru');
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/profile',[ProfilController::class,'index'])->name('profil');
+    // /Route::get('/profile/update',[ProfilController::class,'update'])->name('profil');
+
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 });
 
 Route::middleware(['auth'])->prefix('dokter')->group(function () {  
     Route::get('dashboard', [DokterController::class, 'dokterDashboard'])->middleware('role:dokter')->name('dokter');
-   
 });
 Route::middleware(['auth'])->prefix('admin')->group(function () {  
     Route::get('dashboard', [AdminController::class, 'adminDashboard'])->middleware('role:admin')->name('admin');

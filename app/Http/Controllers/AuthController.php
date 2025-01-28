@@ -43,33 +43,53 @@ class AuthController extends Controller
     
         if (Auth::attempt($credentials)) {  
             // Authentication passed...  
+            $userName = Auth::user()->name;
+            notyf()->success('Selamat Datang, ' . $userName);
+            //sweetalert()->success('Your account has been unlocked.');
             return redirect()->route('dashboard');  
+            
         }  
+        //notyf()->success('Selamat Datang');
+        
     
         // Authentication failed...  
         return back()->withErrors([  
             'email' => 'The provided credentials do not match our records.',  
         ]);  
     }    
-    
+        
+    /**
+     * register_action
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function register_action(Request $request)    
     {    
         $request->validate([    
             'name' => 'required|string|max:255',    
             'email' => 'required|email|unique:users,email',    
-            'password' => 'required|string|confirmed',  
-            'role_type' => 'required|string|in:dokter,admin_sistem,perawat,administrasi,pasien,apoteker,manajer,umum'  
+            'password' => 'required|string',  
+            'role_type' => 'required|string|in:dokter,admin,perawat,administrasi,pasien,apoteker,manajer'  
         ]);    
     
         // Buat pengguna baru  
         User::create([    
             'name' => $request->name,    
-            'email' => $request->email,    
-            'password' => Hash::make($request->password),   
-            'role_type' => $request->role_type
+            'email' => $request->email,   
+            'role_type' => $request->role_type, 
+            'password' => Hash::make($request->password)
+            
         ]);    
         //flash()->success('');
-        notyf()->success('Data sudah berhasil ditambahkan');
+        //notyf()->success('Data berhasil ditambahkan');
+        sweetalert()->success('Your account has been unlocked.');
+        // sweetalert()->showConfirmButton(
+        //     bool $showConfirmButton = true, 
+        //     string $confirmButtonText = null, 
+        //     string $confirmButtonColor = null, 
+        //     string $confirmButtonAriaLabel = null
+        // );
 
         // Redirect ke halaman login dengan pesan sukses  
         return redirect()->route('login');    
