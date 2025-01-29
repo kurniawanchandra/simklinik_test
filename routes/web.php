@@ -43,7 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/profile',[ProfilController::class,'index'])->name('profil');
     // /Route::get('/profile/update',[ProfilController::class,'update'])->name('profil');
-
+    // Rute untuk memperbarui pengguna yang ada
+    Route::put('/profile/{$id}', [AuthController::class, 'update'])->name('profile.update');
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 });
 
@@ -51,7 +52,7 @@ Route::middleware(['auth'])->prefix('dokter')->group(function () {
     Route::get('dashboard', [DokterController::class, 'dokterDashboard'])->middleware('role:dokter')->name('dokter');
 });
 Route::middleware(['auth'])->prefix('admin')->group(function () {  
-    Route::get('dashboard', [AdminController::class, 'adminDashboard'])->middleware('role:admin')->name('admin');
+    Route::get('dashboard', [AdminController::class, 'index'])->middleware('role:admin')->name('admin.dashboard');
 });  
 Route::middleware(['auth'])->prefix('administrasi')->group(function () {  
     Route::get('dashboard', [AdministrasiController::class, 'administrasiDashboard'])->middleware('role:administrasi')->name('administrasi');

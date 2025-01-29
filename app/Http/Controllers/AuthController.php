@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {        
@@ -82,8 +84,8 @@ class AuthController extends Controller
             
         ]);    
         //flash()->success('');
-        //notyf()->success('Data berhasil ditambahkan');
-        sweetalert()->success('Your account has been unlocked.');
+        notyf()->success('Data berhasil ditambahkan');
+       //sweetalert()->success('Your account has been unlocked.');
         // sweetalert()->showConfirmButton(
         //     bool $showConfirmButton = true, 
         //     string $confirmButtonText = null, 
@@ -94,6 +96,7 @@ class AuthController extends Controller
         // Redirect ke halaman login dengan pesan sukses  
         return redirect()->route('login');    
     }
+
     /**
      * logout
      *

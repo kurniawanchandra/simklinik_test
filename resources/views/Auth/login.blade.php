@@ -78,7 +78,7 @@
                       <label for="yourUsername" class="form-label">E-mail</label>
                       <div class="input-group has-validation">
                         {{-- <span class="input-group-text" id="inputGroupPrepend">@</span> --}}
-                        <input type="text" name="email" class="form-control" id="yourUsername" value="{{ old ('name') }}" required>
+                        <input type="text" name="email" class="form-control" id="yourUsername" value="{{ old('email') }}" required>
                         <div class="invalid-feedback">Please enter your email.</div>
                       </div>
                     </div>

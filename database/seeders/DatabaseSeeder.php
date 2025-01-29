@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         // Panggil UserTableSeeder
         $this->call(UsersTableSeeder::class);
+        //$this->call(ProfilesTableSeeder::class);
     }
 }
